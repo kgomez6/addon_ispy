@@ -9,6 +9,8 @@ RUN  echo 'deb http://http.us.debian.org/debian testing main non-free contrib' >
 VOLUME ["/data"]
 
 ADD https://ispyfiles.azureedge.net/downloads/Agent_Linux64_4_4_6_0.zip /agent/
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 ARG BASHIO_VERSION="v0.15.0"
 RUN wget -c $(wget -qO- "https://www.ispyconnect.com/api/Agent/DownloadLocation4?platform=Linux64&fromVersion=0" | tr -d '"') -O agent.zip; \
     unzip agent.zip -d /agent && \
